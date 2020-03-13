@@ -13,13 +13,15 @@ func main() {
 	}
 
 	instanceID := os.Getenv("INSTANCE_ID")
-	if instanceID == "" {
-		log.Fatal("INSTANCE_ID env is required")
-	}
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("hello world. from " + instanceID))
+		text := "hello world"
+		if instanceID != "" {
+			text = text + ". from " + instanceID
+		}
+
+		w.Write([]byte(text))
 	})
 	server := new(http.Server)
 	server.Handler = mux

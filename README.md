@@ -7,8 +7,8 @@ Nothing much
 #### Docker
 
 ```bash
-docker build --no-cache -t hello-world --build-arg PORT=8083 --build-arg INSTANCE_ID=some-text .
-docker run hello-world
+docker build --no-cache -t hello-world .
+docker run -it -e PORT=8085 -e INSTANCE_ID=some-text -p 8085:8085 novalagung/hello-world:v0
 ```
 
 #### Windows (non-docker)
@@ -26,3 +26,13 @@ export PORT=8083
 export INSTANCE_ID=some-text
 go run main.go
 ```
+
+Or,
+
+```bash
+PORT=8083 INSTANCE_ID=some-text go run main.go
+```
+
+## Author
+
+Noval Agung Prayogo
