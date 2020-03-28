@@ -1,17 +1,10 @@
 # Hello World Sample App
 
-Nothing much
+Nothing much, except starting a web server at certain port.
 
 ## How to run
 
-#### Docker
-
-```bash
-docker build --no-cache -t hello-world .
-docker run -it -e PORT=8085 -e INSTANCE_ID=some-text -p 8085:8085 novalagung/hello-world:v0
-```
-
-#### Windows (non-docker)
+#### Windows
 
 ```bash
 set PORT=8083
@@ -19,7 +12,7 @@ set INSTANCE_ID=some-text
 go run main.go
 ```
 
-#### Nix/Linux (non-docker)
+#### Nix/Linux
 
 ```bash
 export PORT=8083
