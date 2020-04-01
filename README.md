@@ -14,23 +14,25 @@ docker run -it -e PORT=8085 -e INSTANCE_ID=some-text -p 8085:8085 novalagung/hel
 #### Windows (non-docker)
 
 ```bash
+set MYSQL_CONN_STRING=root@tcp(localhost:3306)/hello_world?parseTime=true
 set PORT=8083
 set INSTANCE_ID=some-text
-go run main.go
+go run main.go lib.go model.go
 ```
 
 #### Nix/Linux (non-docker)
 
 ```bash
+export MYSQL_CONN_STRING=root@tcp(localhost:3306)/hello_world?parseTime=true
 export PORT=8083
 export INSTANCE_ID=some-text
-go run main.go
+go run main.go lib.go model.go
 ```
 
 Or,
 
 ```bash
-PORT=8083 INSTANCE_ID=some-text go run main.go
+MYSQL_CONN_STRING=root@tcp(localhost:3306)/hello_world?parseTime=true PORT=8083 INSTANCE_ID=some-text go run main.go lib.go model.go
 ```
 
 ## Author
