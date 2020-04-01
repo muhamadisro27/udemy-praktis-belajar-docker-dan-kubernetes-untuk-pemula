@@ -1,0 +1,29 @@
+version: '3.3'
+
+services:
+
+  # ========== service hello-world
+  # docker run -it -e PORT=8083 -e MYSQL_CONN_STRING=root@localhost:3306/hello_world -p 9023:8083 hello-mariadb
+  service-hello-world:
+    build: ./hello-world/
+    environment:
+      - MYSQL_CONN_STRING=root@tcp(service-mariadb:3306)/hello_world?parseTime=true
+      - PORT=8083
+    ports:
+      - "8083:8083"
+    restart: on-failure
+    depends_on:
+      - service-mariadb
+
+  # ========== service mariadb
+  # docker run --name some-mariadb -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=yes \
+  #     -v C:/Users/novalagung/Desktop/docker-volume-example:/var/lib/mysql mariadb:latest
+  service-mariadb:
+    image: mariadb:latest
+    restart: on-failure
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - C:/Users/novalagung/Desktop/docker-volume-example:/var/lib/mysql
+    ports:
+      - "3306"
