@@ -16,7 +16,6 @@ docker run -it -e PORT=8085 -e MYSQL_CONN_STRING=root@tcp(localhost:3306)/hello_
 ```bash
 set MYSQL_CONN_STRING=root@tcp(localhost:3306)/hello_world?parseTime=true
 set PORT=8083
-set INSTANCE_ID=some-text
 go run main.go lib.go model.go
 ```
 
@@ -25,14 +24,13 @@ go run main.go lib.go model.go
 ```bash
 export MYSQL_CONN_STRING=root@tcp(localhost:3306)/hello_world?parseTime=true
 export PORT=8083
-export INSTANCE_ID=some-text
 go run main.go lib.go model.go
 ```
 
 Or,
 
 ```bash
-MYSQL_CONN_STRING=root@tcp(localhost:3306)/hello_world?parseTime=true PORT=8083 INSTANCE_ID=some-text go run main.go lib.go model.go
+MYSQL_CONN_STRING=root@tcp(localhost:3306)/hello_world?parseTime=true PORT=8083 go run main.go lib.go model.go
 ```
 
 ## Author
