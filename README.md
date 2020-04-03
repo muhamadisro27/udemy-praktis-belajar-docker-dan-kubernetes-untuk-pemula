@@ -1,6 +1,6 @@
 # Hello World Sample App
 
-Nothing much, except starting a web server at certain port.
+Nothing much
 
 ## How to run
 
