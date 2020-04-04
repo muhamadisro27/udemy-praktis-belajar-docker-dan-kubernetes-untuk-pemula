@@ -24,6 +24,8 @@ services:
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     volumes:
-      - C:/Users/novalagung/Desktop/docker-volume-example:/var/lib/mysql
+      - C:/Users/novalagung/Desktop/docker-volume-example2:/var/lib/mysql
+      - ./mariadb/schema.sql:/data/application/init.sql
+    command: --init-file /data/application/init.sql
     ports:
-      - "3306"
+      - "3306:3306"
