@@ -19,6 +19,11 @@ func main() {
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != "GET" {
+			http.Error(w, "http method not allowed", http.StatusBadRequest)
+			return
+		}
+
 		text := "hello world"
 		if instanceID != "" {
 			text = text + ". from " + instanceID
@@ -33,7 +38,8 @@ func main() {
 		case "POST":
 			createUserHandler(w, r)
 		default:
-			w.WriteHeader(http.StatusMethodNotAllowed)
+			http.Error(w, "http method not allowed", http.StatusBadRequest)
+			return
 		}
 	})
 	server := new(http.Server)
