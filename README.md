@@ -27,7 +27,7 @@ export INSTANCE_ID=some-text
 go run main.go
 ```
 
-Or,
+#### Go CLI
 
 ```bash
 PORT=8083 INSTANCE_ID=some-text go run main.go
