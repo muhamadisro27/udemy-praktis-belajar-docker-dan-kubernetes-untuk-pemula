@@ -16,6 +16,11 @@ func main() {
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != "GET" {
+			http.Error(w, "http method not allowed", http.StatusBadRequest)
+			return
+		}
+
 		text := "hello world"
 		if instanceID != "" {
 			text = text + ". from " + instanceID
