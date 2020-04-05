@@ -19,7 +19,7 @@ set PORT=8083
 go run main.go lib.go model.go
 ```
 
-#### Nix/Linux (non-docker)
+#### Nix/Linux
 
 ```bash
 export MYSQL_CONN_STRING=root@tcp(localhost:3306)/hello_world?parseTime=true
@@ -27,7 +27,7 @@ export PORT=8083
 go run main.go lib.go model.go
 ```
 
-Or,
+#### Go CLI
 
 ```bash
 MYSQL_CONN_STRING=root@tcp(localhost:3306)/hello_world?parseTime=true PORT=8083 go run main.go lib.go model.go
