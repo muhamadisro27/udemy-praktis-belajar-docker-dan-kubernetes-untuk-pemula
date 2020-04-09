@@ -7,8 +7,8 @@ Nothing much
 #### Docker
 
 ```bash
-docker build --no-cache -t hello-world .
-docker run -it -e PORT=8085 -e MYSQL_CONN_STRING=root@tcp(localhost:3306)/hello_world?parseTime=true -p 8085:8085 novalagung/hello-world
+docker build --no-cache -t hello-mariadb .
+docker run -it -e PORT=8085 -e MYSQL_CONN_STRING=root@tcp(localhost:3306)/hello_world?parseTime=true -p 8085:8085 hello-mariadb
 ```
 
 #### Windows (non-docker)
