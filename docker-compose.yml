@@ -10,7 +10,7 @@ services:
       - MYSQL_CONN_STRING=root@tcp(service-mariadb:3306)/hello_world?parseTime=true
       - PORT=8083
     ports:
-      - "8083:8083"
+      - 8083:8083
     networks: 
       - my-network
     restart: on-failure
