@@ -10,10 +10,9 @@ services:
       - MYSQL_CONN_STRING=root@tcp(service-mariadb:3306)/hello_world?parseTime=true
       - PORT=8083
     ports:
-      - "8083:8083"
+      - 8083:8083
     networks: 
       - my-network
-    restart: on-failure
 
   # ========== service mariadb
   # docker run --name service-mariadb -it -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -v C:/Users/novalagung/Desktop/docker-volume-example:/var/lib/mysql --network my-network mariadb
@@ -24,10 +23,9 @@ services:
     volumes:
       - C:/Users/novalagung/Desktop/docker-volume-example:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - 3306:3306
     networks: 
       - my-network
-    restart: on-failure
 
 networks:
   my-network:
