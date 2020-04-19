@@ -3,8 +3,8 @@ version: '3.7'
 services:
 
   # ========== service hello-world
-  # docker run -it --rm --name service-hello-world -e PORT=8083 -e MYSQL_CONN_STRING=root@tcp(service-mariadb:3306)/hello_world?parseTime=true -p 8083:8083 --network my-network hello-world-v2
-  service-hello-world:
+  # docker run -it --rm --name service-hello-world-v2 -e PORT=8083 -e MYSQL_CONN_STRING=root@tcp(service-mariadb:3306)/hello_world?parseTime=true -p 8083:8083 --network my-network hello-world-v2
+  service-hello-world-v2:
     build: ./hello-world-v2/
     environment:
       - MYSQL_CONN_STRING=root@tcp(service-mariadb:3306)/hello_world?parseTime=true
