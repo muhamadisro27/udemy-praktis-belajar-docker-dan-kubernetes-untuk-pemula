@@ -3,29 +3,35 @@ version: '3.7'
 services:
 
   # ========== service hello-world
-  # docker run -it -e PORT=8083 -e MYSQL_CONN_STRING=root@localhost:3306/hello_world -p 9023:8083 hello-mariadb
+  # docker run -it --rm --name service-hello-world -e PORT=8083 -e MYSQL_CONN_STRING=root@tcp(service-mariadb:3306)/hello_world?parseTime=true -p 8083:8083 --network my-network hello-world-v2
   service-hello-world:
-    build: ./hello-world/
+    build: ./hello-world-v2/
     environment:
       - MYSQL_CONN_STRING=root@tcp(service-mariadb:3306)/hello_world?parseTime=true
       - PORT=8083
     ports:
       - "8083:8083"
+    networks: 
+      - my-network
     restart: on-failure
     depends_on:
       - service-mariadb
 
   # ========== service mariadb
-  # docker run --name some-mariadb -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=yes \
-  #     -v C:/Users/novalagung/Desktop/docker-volume-example:/var/lib/mysql mariadb:latest
+  # docker run --name service-mariadb -it -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -v C:/Users/novalagung/Desktop/docker-volume-example:/var/lib/mysql --network my-network mariadb
   service-mariadb:
     image: mariadb:latest
-    restart: on-failure
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     volumes:
-      - C:/Users/novalagung/Desktop/docker-volume-example2:/var/lib/mysql
+      - C:/Users/novalagung/Desktop/docker-volume-example:/var/lib/mysql
       - ./mariadb/schema.sql:/data/application/init.sql
     command: --init-file /data/application/init.sql
     ports:
       - "3306:3306"
+    networks: 
+      - my-network
+    restart: on-failure
+
+networks:
+  my-network:
