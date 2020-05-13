@@ -15,9 +15,9 @@ services:
       - my-network
 
   # ========== service mariadb
-  # docker run --name service-mariadb -it -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -v C:/Users/novalagung/Desktop/docker-volume-example:/var/lib/mysql --network my-network mariadb
+  # docker run --name service-mariadb -it -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -v C:/Users/novalagung/Desktop/docker-volume-example:/var/lib/mysql --network my-network mariadb:10.1
   service-mariadb:
-    image: mariadb:latest
+    image: mariadb:10.1
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     volumes:
