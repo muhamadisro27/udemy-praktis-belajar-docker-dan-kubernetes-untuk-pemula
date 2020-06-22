@@ -1,20 +1,11 @@
-# lightweight container for go
-FROM golang:alpine
-
-# update container's packages and install git
-RUN apk update && apk add --no-cache git
-
-# set /app to be the active directory
+FROM golang:latest AS builder
 WORKDIR /app
-
-# copy all files from outside container, into the container
 COPY . .
-
-# download dependencies
+ENV CGO_ENABLED=0
 RUN go mod tidy
-
-# build binary
 RUN go build -o binary
 
-# set the entry point of the binary
+FROM alpine:latest
+WORKDIR /app
+COPY --from=builder /app/binary .
 ENTRYPOINT ["/app/binary"]
