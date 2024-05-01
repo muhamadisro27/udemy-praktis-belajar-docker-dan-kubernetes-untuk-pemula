@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  services-hello-world-v2:
+    build: "./"
+    environment:
+      - PORT=8083
+      - MYSQL_CONN_STRING=root@tcp(services-mariadb:3306)/hello_world?parseTime=true
+    ports:
+      - 8083:8083
+    networks:
+      - hello-world-network
+    depends_on:
+      - services-mariadb
+  services-mariadb:
+    image: mariadb:latest
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 3306:3306
+    volumes:
+      - C:/Users/moham/OneDrive/Desktop/docker-mariadb-two:/var/lib/mysql
+      - ./mariadb/schema.sql:/data/application/init.sql
+    command: --init-file /data/application/init.sql
+    networks:
+      - hello-world-network
+
+networks:
+  hello-world-network:
